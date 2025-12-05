@@ -1,56 +1,248 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
+import { motion } from "framer-motion";
 import Navbar from "./Navbar";
 
+const pageMotion = {
+  initial: { opacity: 0, y: 16 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.45 }
+};
+
+const staggerContainer = {
+  animate: {
+    transition: {
+      staggerChildren: 0.1
+    }
+  }
+};
+
+const fadeInUp = {
+  initial: { opacity: 0, y: 20 },
+  animate: { opacity: 1, y: 0 }
+};
+
 const AboutPage = () => {
-  const { t } = useTranslation();
-  
+  const { t, i18n } = useTranslation();
+  const isGerman = i18n.language === 'de';
+
+  const content = {
+    de: {
+      title: "Über uns – JOBspeedy AI",
+      intro: "JOBspeedy AI ist eine innovative Recruiting-Plattform, die Künstliche Intelligenz, Automatisierung und menschliche Erfahrung kombiniert, um Bewerber und Unternehmen schneller und passgenauer zusammenzubringen. Unser Fokus liegt darauf, den gesamten Bewerbungs- und Einstellungsprozess einfacher, transparenter und effizienter zu gestalten.",
+      forCompaniesTitle: "Für Unternehmen bedeutet das:",
+      forCompanies: "Stellenausschreibungen lassen sich in Sekunden mit KI erstellen, Lebensläufe werden automatisch analysiert und passende Talente werden intelligent vorgeschlagen. Alle Prozesse laufen zentral über ein übersichtliches Dashboard – für weniger Aufwand und bessere Entscheidungen.",
+      forCandidatesTitle: "Für Bewerber bietet JOBspeedy AI ein modernes und unkompliziertes Erlebnis:",
+      forCandidates: "Ein Profil reicht aus, um automatisch passende Jobvorschläge zu erhalten, sich in wenigen Klicks zu bewerben und jederzeit den eigenen Fortschritt zu verfolgen. Die Plattform unterstützt dabei, Chancen schneller zu erkennen und Jobs zu finden, die wirklich zur eigenen Persönlichkeit und Erfahrung passen.",
+      missionTitle: "Unsere Mission ist klar:",
+      mission: "Recruiting neu denken – fairer, schneller und menschlicher.",
+      missionDesc: "Wir schaffen Technologien, die entlasten und verbinden, damit beide Seiten genau das finden, was sie suchen.",
+      closing: "JOBspeedy AI steht für Innovation, Transparenz und echte Unterstützung.",
+      closingFinal: "Wir gestalten die Zukunft des Recruitings – dort, wo KI auf Chancen trifft und Menschen in den Mittelpunkt rückt."
+    },
+    en: {
+      title: "About Us – JOBspeedy AI",
+      intro: "JOBspeedy AI is an innovative recruiting platform that combines artificial intelligence, automation, and human experience to bring applicants and companies together faster and more precisely. Our focus is on making the entire application and hiring process simpler, more transparent, and more efficient.",
+      forCompaniesTitle: "For companies, this means:",
+      forCompanies: "Job postings can be created in seconds with AI, resumes are automatically analyzed, and suitable talents are intelligently suggested. All processes run centrally through a clear dashboard – for less effort and better decisions.",
+      forCandidatesTitle: "For applicants, JOBspeedy AI offers a modern and uncomplicated experience:",
+      forCandidates: "One profile is enough to automatically receive matching job suggestions, apply in just a few clicks, and track your own progress at any time. The platform helps you recognize opportunities faster and find jobs that truly match your personality and experience.",
+      missionTitle: "Our mission is clear:",
+      mission: "Rethink recruiting – fairer, faster, and more human.",
+      missionDesc: "We create technologies that relieve and connect, so both sides find exactly what they're looking for.",
+      closing: "JOBspeedy AI stands for innovation, transparency, and genuine support.",
+      closingFinal: "We shape the future of recruiting – where AI meets opportunities and people take center stage."
+    }
+  };
+
+  const text = isGerman ? content.de : content.en;
+
   return (
-    <div style={styles.page}>
+    <div className="min-h-screen bg-gradient-to-b from-[#e8f3ff] via-white to-[#eef4ff] text-gray-800">
       <Navbar />
       <div style={{ height: 70 }} />
 
-      <div style={styles.container}>
-        <h1 style={styles.gradientTitle}>{t("About JOBspeedy AI")}</h1>
-        <p style={styles.lead}>{t("AboutIntro1")}</p>
-        <p style={styles.lead}>{t("AboutIntro2")}</p>
-        <p style={styles.lead}>{t("AboutIntro3")}</p>
+      <div className="px-4 md:px-8 lg:px-12 pt-6 pb-16">
+        {/* Hero Section */}
+        <motion.div
+          {...pageMotion}
+          className="max-w-6xl mx-auto bg-white/85 backdrop-blur rounded-3xl border border-slate-200 shadow-xl shadow-sky-100 p-6 md:p-10 mb-8"
+        >
+          <div className="text-center mb-8">
+            <p className="inline-flex items-center gap-2 text-sm font-semibold text-sky-700 bg-sky-50 border border-sky-100 px-3 py-1 rounded-full mb-4">
+              🚀 About Us
+            </p>
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-slate-900 mt-3 bg-gradient-to-r from-sky-600 via-blue-600 to-indigo-600 bg-clip-text text-transparent">
+              {text.title}
+            </h1>
+          </div>
 
-        <h3 style={styles.sectionTitle}>{t("AboutEmployersTitle")}</h3>
-        <ul style={styles.list}>
-          <li>{t("AboutEmployers1")}</li>
-          <li>{t("AboutEmployers2")}</li>
-          <li>{t("AboutEmployers3")}</li>
-          <li>{t("AboutEmployers4")}</li>
-          <li>{t("AboutEmployers5")}</li>
-        </ul>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="bg-blue-50 border-l-4 border-blue-500 p-6 rounded-r-lg"
+          >
+            <p className="text-slate-700 leading-relaxed text-lg">
+              {text.intro}
+            </p>
+          </motion.div>
+        </motion.div>
 
-        <p style={styles.lead}>{t("AboutCandidates")}</p>
-        <p style={styles.lead}><strong>{t("AboutBelief")}</strong></p>
-        <p style={styles.lead}>{t("AboutContext")}</p>
+        {/* Main Content Grid */}
+        <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-6 mb-8">
+          {/* For Companies Card */}
+          <motion.div
+            {...pageMotion}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="bg-white rounded-2xl shadow-lg border border-slate-200 p-6 md:p-8 hover:shadow-xl transition-shadow"
+          >
+            <div className="flex items-center gap-3 mb-4">
+              <div className="p-3 bg-indigo-100 rounded-xl">
+                <span className="text-2xl">🏢</span>
+              </div>
+              <h2 className="text-2xl font-bold text-indigo-700">
+                {text.forCompaniesTitle}
+              </h2>
+            </div>
+            <div className="bg-indigo-50 rounded-lg p-5 border border-indigo-100">
+              <p className="text-slate-700 leading-relaxed">
+                {text.forCompanies}
+              </p>
+            </div>
+            <div className="mt-6 grid grid-cols-3 gap-3">
+              <div className="bg-white rounded-lg p-3 border border-indigo-100 text-center">
+                <p className="text-2xl mb-1">⚡</p>
+                <p className="text-xs text-slate-600 font-semibold">Schnell</p>
+              </div>
+              <div className="bg-white rounded-lg p-3 border border-indigo-100 text-center">
+                <p className="text-2xl mb-1">🤖</p>
+                <p className="text-xs text-slate-600 font-semibold">KI-gestützt</p>
+              </div>
+              <div className="bg-white rounded-lg p-3 border border-indigo-100 text-center">
+                <p className="text-2xl mb-1">📊</p>
+                <p className="text-xs text-slate-600 font-semibold">Dashboard</p>
+              </div>
+            </div>
+          </motion.div>
 
-        <h3 style={styles.sectionTitle}>{t("Our Mission")}</h3>
-        <p style={styles.lead}>{t("MissionText")}</p>
+          {/* For Candidates Card */}
+          <motion.div
+            {...pageMotion}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="bg-white rounded-2xl shadow-lg border border-slate-200 p-6 md:p-8 hover:shadow-xl transition-shadow"
+          >
+            <div className="flex items-center gap-3 mb-4">
+              <div className="p-3 bg-emerald-100 rounded-xl">
+                <span className="text-2xl">👤</span>
+              </div>
+              <h2 className="text-2xl font-bold text-emerald-700">
+                {text.forCandidatesTitle}
+              </h2>
+            </div>
+            <div className="bg-emerald-50 rounded-lg p-5 border border-emerald-100">
+              <p className="text-slate-700 leading-relaxed">
+                {text.forCandidates}
+              </p>
+            </div>
+            <div className="mt-6 grid grid-cols-3 gap-3">
+              <div className="bg-white rounded-lg p-3 border border-emerald-100 text-center">
+                <p className="text-2xl mb-1">🎯</p>
+                <p className="text-xs text-slate-600 font-semibold">Passgenau</p>
+              </div>
+              <div className="bg-white rounded-lg p-3 border border-emerald-100 text-center">
+                <p className="text-2xl mb-1">⚡</p>
+                <p className="text-xs text-slate-600 font-semibold">Schnell</p>
+              </div>
+              <div className="bg-white rounded-lg p-3 border border-emerald-100 text-center">
+                <p className="text-2xl mb-1">📈</p>
+                <p className="text-xs text-slate-600 font-semibold">Fortschritt</p>
+              </div>
+            </div>
+          </motion.div>
+        </div>
 
-        <h3 style={styles.sectionTitle}>{t("Our Vision")}</h3>
-        <p style={styles.lead}>{t("VisionText")}</p>
+        {/* Mission Section */}
+        <motion.div
+          {...pageMotion}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="max-w-6xl mx-auto bg-gradient-to-br from-sky-500 via-blue-500 to-indigo-600 rounded-3xl shadow-xl p-8 md:p-12 text-white mb-8"
+        >
+          <div className="text-center mb-6">
+            <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur px-4 py-2 rounded-full mb-4">
+              <span className="text-2xl">🎯</span>
+              <p className="text-sm font-semibold">Unsere Mission</p>
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              {text.missionTitle}
+            </h2>
+          </div>
+          
+          <div className="bg-white/10 backdrop-blur rounded-2xl p-6 md:p-8 border border-white/20 mb-6">
+            <p className="text-2xl md:text-3xl font-bold text-center mb-4">
+              {text.mission}
+            </p>
+            <p className="text-lg text-center text-white/90 leading-relaxed">
+              {text.missionDesc}
+            </p>
+          </div>
 
-        <h3 style={styles.sectionTitle}>{t("Our Values")}</h3>
-        <ul style={styles.list}>
-          <li>{t("ValuesInnovation")}</li>
-          <li>{t("ValuesIntegrity")}</li>
-          <li>{t("ValuesEfficiency")}</li>
-          <li>{t("ValuesEmpowerment")}</li>
-        </ul>
+          <div className="grid md:grid-cols-3 gap-4 mt-8">
+            <div className="bg-white/10 backdrop-blur rounded-xl p-4 border border-white/20 text-center">
+              <p className="text-3xl mb-2">⚖️</p>
+              <p className="font-semibold">Fairer</p>
+            </div>
+            <div className="bg-white/10 backdrop-blur rounded-xl p-4 border border-white/20 text-center">
+              <p className="text-3xl mb-2">⚡</p>
+              <p className="font-semibold">Schneller</p>
+            </div>
+            <div className="bg-white/10 backdrop-blur rounded-xl p-4 border border-white/20 text-center">
+              <p className="text-3xl mb-2">❤️</p>
+              <p className="font-semibold">Menschlicher</p>
+            </div>
+          </div>
+        </motion.div>
 
-        <p style={styles.lead}>{t("AboutClosing1")}</p>
-        <p style={styles.lead}><strong>{t("AboutClosing2")}</strong></p>
-        <p style={styles.lead}>{t("AboutClosing3")}</p>
-        <p style={styles.lead}>{t("AboutClosing4")}</p>
-        <p style={styles.lead}>{t("AboutClosing5")}</p>
+        {/* Closing Section */}
+        <motion.div
+          {...pageMotion}
+          transition={{ duration: 0.5, delay: 0.4 }}
+          className="max-w-6xl mx-auto bg-white rounded-2xl shadow-lg border border-slate-200 p-6 md:p-10"
+        >
+          <div className="space-y-6">
+            <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl p-6 border border-purple-100">
+              <p className="text-slate-800 text-lg leading-relaxed font-medium">
+                {text.closing}
+              </p>
+            </div>
+            
+            <div className="bg-slate-50 rounded-xl p-6 border border-slate-200">
+              <p className="text-slate-700 text-lg leading-relaxed">
+                {text.closingFinal}
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-4 mt-8">
+              <div className="bg-sky-50 rounded-xl p-5 border border-sky-100 text-center">
+                <p className="text-3xl mb-2">💡</p>
+                <p className="font-semibold text-sky-900 mb-1">Innovation</p>
+                <p className="text-sm text-sky-700">Moderne Technologien</p>
+              </div>
+              <div className="bg-emerald-50 rounded-xl p-5 border border-emerald-100 text-center">
+                <p className="text-3xl mb-2">🔍</p>
+                <p className="font-semibold text-emerald-900 mb-1">Transparenz</p>
+                <p className="text-sm text-emerald-700">Klare Prozesse</p>
+              </div>
+              <div className="bg-amber-50 rounded-xl p-5 border border-amber-100 text-center">
+                <p className="text-3xl mb-2">🤝</p>
+                <p className="font-semibold text-amber-900 mb-1">Unterstützung</p>
+                <p className="text-sm text-amber-700">Echte Hilfe</p>
+              </div>
+            </div>
+          </div>
+        </motion.div>
       </div>
 
-      <div style={{ height: 30 }} />
       {/* Footer */}
       <footer className="py-8 bg-gradient-to-r from-indigo-100 via-white to-purple-100 mt-12">
         <div className="max-w-6xl mx-auto px-6">
@@ -114,40 +306,4 @@ const AboutPage = () => {
   );
 };
 
-const styles = {
-  page: { fontFamily: "'Poppins', sans-serif", backgroundColor: "#f8f8ff", color: "#2e236c", minHeight: "100vh", position: "relative" },
-  navbar: { display: "flex", justifyContent: "space-between", alignItems: "center", padding: "20px 60px", background: "white", boxShadow: "0 2px 8px rgba(0,0,0,0.05)", position: "sticky", top: 0, zIndex: 10 },
-  logo: { fontSize: "24px", fontWeight: "700", color: "#4b2aad", cursor: "pointer" },
-  logoSpan: { color: "#7b47ff" },
-  navLinks: { display: "flex", gap: "25px", listStyle: "none", alignItems: "center", margin: 0 },
-  navItem: { cursor: "pointer", fontWeight: 500, color: "#555", transition: "color 0.2s ease", fontSize: "18px" },
-  registerBtn: { background: "#6a4cff", color: "#fff", borderRadius: "25px", padding: "12px 25px", border: "none", cursor: "pointer", fontWeight: "600", fontSize: "17px", boxShadow: "0 4px 10px rgba(106, 76, 255, 0.3)" },
-  container: { maxWidth: 1100, margin: "40px auto", padding: "0 24px" },
-  title: { fontSize: 36, margin: 0 },
-  gradientTitle: {
-    fontSize: 36,
-    margin: 0,
-    fontWeight: 600,
-    background: "linear-gradient(135deg, #00B2FF 0%, #0083FF 100%)",
-    WebkitBackgroundClip: "text",
-    WebkitTextFillColor: "transparent",
-    backgroundClip: "text",
-  },
-  lead: { color: "#555", marginTop: 10 },
-  sectionTitle: {
-    marginTop: 24,
-    marginBottom: 8,
-    fontWeight: 600,
-    color: "#0477BF",
-  },
-  list: { margin: 0, paddingLeft: 18, color: "#444", lineHeight: 1.6 },
-  cards: { display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: 20, marginTop: 24 },
-  card: { background: "white", borderRadius: 12, padding: 20, boxShadow: "0 4px 12px rgba(0,0,0,0.1)" },
-  waveContainer: { position: "absolute", bottom: 0, left: 0, width: "100%", textAlign: "center", zIndex: -1, pointerEvents: "none" },
-  wave: { width: "100%", height: "auto", display: "block" },
-  footerText: { textAlign: "center", color: "#2f2e30ff", fontWeight: 500, fontSize: 16, padding: "10px 0", marginTop: 10 },
-};
-
 export default AboutPage;
-
-

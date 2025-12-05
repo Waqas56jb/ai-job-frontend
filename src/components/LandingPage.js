@@ -46,19 +46,11 @@ const LandingPage = () => {
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text"
-            }}>Find Your {t("Next Job")}</span> <span style={{
-              background: "linear-gradient(135deg, #00B2FF 0%, #0083FF 100%)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text"
-            }}>{t("Faster")}</span><br />
-            <span style={{
-              background: "linear-gradient(135deg, #00B2FF 0%, #0083FF 100%)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text"
-            }}>{t("with AI")}</span>
+            }}>{t("Find your next job even faster with AI")}</span>
           </h1>
+          <p className="text-xl md:text-2xl text-gray-800 font-semibold">
+            {t("Find your next job faster – with AI by your side")}
+          </p>
           <p className="text-lg md:text-xl text-gray-600 leading-relaxed">
             {t("Empower your recruitment journey")}
           </p>
@@ -144,7 +136,7 @@ const LandingPage = () => {
               {
                 icon: <FaChartLine />,
                 title: t("Skill Insights"),
-                desc: t("Receive AI-powered analytics that show how your skills compare to top candidates in your field."),
+                desc: t("Receive AI-powered analytics that show how your skills match the advertised positions."),
               },
               {
                 icon: <FaUserTie />,
