@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import Navbar from './Navbar';
+import Footer from './Footer';
 
 const pageMotion = {
   initial: { opacity: 0, y: 16 },
@@ -45,7 +46,7 @@ const Impressum = () => {
               <div className="prose prose-slate prose-lg max-w-none prose-headings:scroll-mt-24 prose-headings:text-slate-900 prose-headings:font-bold prose-h1:text-3xl prose-h1:mb-6 prose-h2:text-2xl prose-h2:mt-8 prose-h2:mb-4 prose-h2:text-sky-700 prose-h3:text-xl prose-h3:mt-6 prose-h3:mb-3 prose-h3:text-slate-800 prose-p:text-slate-700 prose-p:leading-relaxed prose-p:mb-4 prose-strong:text-slate-900 prose-strong:font-semibold prose-a:text-sky-600 prose-a:no-underline hover:prose-a:text-sky-700 prose-a:font-medium prose-ul:text-slate-700 prose-li:mb-2 prose-li:leading-relaxed">
                 <div
                   dangerouslySetInnerHTML={{
-                    __html: `
+          __html: `
 <h1 class="text-3xl font-bold text-slate-900 mb-6 pb-4 border-b-2 border-slate-200">Impressum</h1>
 
 <div class="bg-blue-50 border-l-4 border-blue-500 p-5 rounded-r-lg mb-8">
@@ -210,6 +211,9 @@ const Impressum = () => {
           </div>
         </motion.div>
       </div>
+
+      {/* Footer */}
+      <Footer />
     </div>
   );
 };

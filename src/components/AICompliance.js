@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import Navbar from './Navbar';
+import Footer from './Footer';
 
 const pageMotion = {
   initial: { opacity: 0, y: 16 },
@@ -45,7 +46,7 @@ const AICompliance = () => {
               <div className="prose prose-slate prose-lg max-w-none prose-headings:scroll-mt-24 prose-headings:text-slate-900 prose-headings:font-bold prose-h1:text-3xl prose-h1:mb-6 prose-h2:text-2xl prose-h2:mt-8 prose-h2:mb-4 prose-h2:text-sky-700 prose-h3:text-xl prose-h3:mt-6 prose-h3:mb-3 prose-h3:text-slate-800 prose-p:text-slate-700 prose-p:leading-relaxed prose-p:mb-4 prose-strong:text-slate-900 prose-strong:font-semibold prose-a:text-sky-600 prose-a:no-underline hover:prose-a:text-sky-700 prose-a:font-medium prose-ul:text-slate-700 prose-li:mb-2 prose-li:leading-relaxed">
                 <div
                   dangerouslySetInnerHTML={{
-                    __html: `
+            __html: `
 <h1 class="text-3xl font-bold text-slate-900 mb-6 pb-4 border-b-2 border-slate-200">ChatGPT- & KI-Compliance</h1>
 
 <div class="bg-blue-50 border-l-4 border-blue-500 p-5 rounded-r-lg mb-8">
@@ -59,12 +60,12 @@ const AICompliance = () => {
     <div class="bg-indigo-50 border-l-4 border-indigo-500 p-4 rounded-r-lg">
       <p class="text-slate-800 font-semibold mb-3">KI-Funktionen im Überblick:</p>
       <ul class="list-disc list-inside text-slate-700 space-y-2 ml-4">
-        <li>KI-gestütztes <strong>Matching zwischen Bewerbern und Arbeitgebern</strong></li>
-        <li>Automatische Texterstellung für Stellenanzeigen und Bewerbungsunterlagen</li>
-        <li><strong>Internationale Bewerbungen:</strong> Prüfung der Anerkennungsfähigkeit ausländischer Berufsabschlüsse</li>
-        <li>Intelligente Chat-Assistenz zur Begleitung im Bewerbungsprozess</li>
-        <li>Kontinuierliche Optimierung der Ergebnisse durch maschinelles Lernen</li>
-      </ul>
+  <li>KI-gestütztes <strong>Matching zwischen Bewerbern und Arbeitgebern</strong></li>
+  <li>Automatische Texterstellung für Stellenanzeigen und Bewerbungsunterlagen</li>
+  <li><strong>Internationale Bewerbungen:</strong> Prüfung der Anerkennungsfähigkeit ausländischer Berufsabschlüsse</li>
+  <li>Intelligente Chat-Assistenz zur Begleitung im Bewerbungsprozess</li>
+  <li>Kontinuierliche Optimierung der Ergebnisse durch maschinelles Lernen</li>
+</ul>
     </div>
   </div>
 </section>
@@ -113,7 +114,7 @@ const AICompliance = () => {
         <li><strong>Berichtigung oder Löschung</strong> (Art. 16 / 17 DSGVO)</li>
         <li><strong>Einschränkung oder Widerspruch</strong> (Art. 18 / 21 DSGVO)</li>
         <li><strong>Datenübertragbarkeit</strong> (Art. 20 DSGVO)</li>
-      </ul>
+</ul>
     </div>
     <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-4">
       <p class="text-slate-700 mb-1"><strong>Kontakt:</strong></p>
@@ -162,6 +163,9 @@ const AICompliance = () => {
           </div>
         </motion.div>
       </div>
+
+      {/* Footer */}
+      <Footer />
     </div>
   );
 };

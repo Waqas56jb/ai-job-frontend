@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
 import Navbar from "./Navbar";
+import Footer from "./Footer";
 import { FaArrowLeft } from "react-icons/fa";
 import API_BASE_URL from "../config";
 import { parseResumeWithOpenAI, getAIJobRecommendations } from "../utils/openaiParser";
@@ -520,7 +521,8 @@ const ApplicationPage = () => {
         </div>
       </div>
 
-      
+      {/* Footer */}
+      <Footer />
     </div>
   );
 };

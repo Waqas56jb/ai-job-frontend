@@ -13,13 +13,6 @@ const LoginPage = () => {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  // Forgot password modal state
-  const [fpOpen, setFpOpen] = useState(false);
-  const [fpEmail, setFpEmail] = useState("");
-  const [fpNewPassword, setFpNewPassword] = useState("");
-  const [fpConfirmPassword, setFpConfirmPassword] = useState("");
-  const [fpLoading, setFpLoading] = useState(false);
-  const [fpMsg, setFpMsg] = useState("");
   const [currentLang, setCurrentLang] = useState(i18n.language);
 
   useEffect(() => {
@@ -31,37 +24,6 @@ const LoginPage = () => {
   const toggleLanguage = () => {
     const newLang = currentLang === 'en' ? 'de' : 'en';
     i18n.changeLanguage(newLang);
-  };
-
-  const handleForgot = async () => {
-    setFpMsg("");
-    if (!fpEmail || !fpNewPassword) {
-      setFpMsg(t("Email and new password are required"));
-      return;
-    }
-    if (fpNewPassword !== fpConfirmPassword) {
-      setFpMsg(t("New password and confirm password do not match"));
-      return;
-    }
-    setFpLoading(true);
-    try {
-      const res = await fetch(`${API_BASE_URL}/api/admin/forgot-password`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: fpEmail, newPassword: fpNewPassword })
-      });
-      const data = await res.json().catch(() => ({}));
-      if (!res.ok) {
-        throw new Error(data.error || "Failed to update password");
-      }
-      setFpMsg(t("Password updated successfully. You can now log in."));
-      // Optionally close after a short delay
-      setTimeout(() => setFpOpen(false), 1200);
-    } catch (e) {
-      setFpMsg(e.message);
-    } finally {
-      setFpLoading(false);
-    }
   };
 
   const handleLogin = async () => {
@@ -181,12 +143,6 @@ const LoginPage = () => {
             />
           </div>
 
-          <div style={styles.forgotPassword}>
-            <button type="button" style={styles.forgotLink} onClick={() => { setFpEmail(""); setFpNewPassword(""); setFpConfirmPassword(""); setFpMsg(""); setFpOpen(true); }}>
-              {t("Forgot Password?")}
-            </button>
-          </div>
-
           <button style={styles.loginBtn} onClick={handleLogin}>
             {loading ? "LOADING..." : t("Login")}
           </button>
@@ -204,36 +160,6 @@ const LoginPage = () => {
           </div>
         </div>
       </div>
-
-      {/* Forgot Password Modal */}
-      {fpOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-4" onClick={() => setFpOpen(false)}>
-          <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-6" onClick={(e) => e.stopPropagation()}>
-            <h3 className="text-xl font-bold text-gray-900">{t("Reset Password")}</h3>
-            <div className="mt-4 space-y-3">
-              <div>
-                <label className="block text-sm text-gray-700 mb-1">{t("Email Address")}</label>
-                <input type="email" value={fpEmail} onChange={(e)=>setFpEmail(e.target.value)} className="w-full border rounded-md px-3 py-2" placeholder="you@example.com" />
-              </div>
-              <div>
-                <label className="block text-sm text-gray-700 mb-1">{t("New Password")}</label>
-                <input type="password" value={fpNewPassword} onChange={(e)=>setFpNewPassword(e.target.value)} className="w-full border rounded-md px-3 py-2" placeholder="********" />
-              </div>
-              <div>
-                <label className="block text-sm text-gray-700 mb-1">{t("Confirm Password")}</label>
-                <input type="password" value={fpConfirmPassword} onChange={(e)=>setFpConfirmPassword(e.target.value)} className="w-full border rounded-md px-3 py-2" placeholder="********" />
-              </div>
-              {fpMsg && <div className="text-sm" style={{ color: fpMsg.toLowerCase().includes('success') ? '#0a7' : '#b00020' }}>{fpMsg}</div>}
-            </div>
-            <div className="mt-6 flex gap-3 justify-end">
-              <button className="px-4 py-2 rounded-full border border-gray-300 text-gray-700 hover:bg-gray-50" onClick={()=>setFpOpen(false)}>{t("Cancel")}</button>
-              <button className="px-4 py-2 rounded-full bg-indigo-600 text-white hover:bg-indigo-700" onClick={handleForgot} disabled={fpLoading}>
-                {fpLoading ? t("Updating...") : t("Update Password")}
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
 
       {/* Background Image */}
       <img src={backgroundImg} alt="Background" style={styles.background} />
@@ -345,15 +271,6 @@ const styles = {
     background: "transparent",
     fontSize: "14px",
     outline: "none",
-  },
-  forgotPassword: {
-    textAlign: "right",
-    marginBottom: "25px",
-  },
-  forgotLink: {
-    fontSize: "12px",
-    color: "#1b1b3a",
-    textDecoration: "none",
   },
   loginBtn: {
     backgroundColor: "#1b1b3a",

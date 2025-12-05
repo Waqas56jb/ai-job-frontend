@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import Navbar from './Navbar';
+import Footer from './Footer';
 
 const pageMotion = {
   initial: { opacity: 0, y: 16 },
@@ -52,7 +53,7 @@ const TermsOfUse = () => {
               <div className="prose prose-slate prose-lg max-w-none prose-headings:scroll-mt-24 prose-headings:text-slate-900 prose-headings:font-bold prose-h1:text-3xl prose-h1:mb-6 prose-h2:text-2xl prose-h2:mt-8 prose-h2:mb-4 prose-h2:text-sky-700 prose-h3:text-xl prose-h3:mt-6 prose-h3:mb-3 prose-h3:text-slate-800 prose-p:text-slate-700 prose-p:leading-relaxed prose-p:mb-4 prose-strong:text-slate-900 prose-strong:font-semibold prose-a:text-sky-600 prose-a:no-underline hover:prose-a:text-sky-700 prose-a:font-medium prose-ul:text-slate-700 prose-li:mb-2 prose-li:leading-relaxed">
                 <div
                   dangerouslySetInnerHTML={{
-                    __html: `
+          __html: `
 <div class="bg-slate-100 rounded-lg p-6 border-2 border-slate-300 mb-8 text-center">
   <h1 class="text-2xl font-bold text-slate-900 mb-4">Nutzungsbedingungen für (potenzielle) Bewerber</h1>
   <div class="bg-white rounded-lg p-5 border border-slate-200">
@@ -106,7 +107,7 @@ const TermsOfUse = () => {
       <li>Spam-Anfragen über die Plattform zu versenden</li>
       <li>die Plattform zu eigenen wirtschaftlichen Zwecken auszuspähen (z.B. mit Hilfe von Bots oder Crawlern)</li>
       <li>die Plattform zum Abwerben potenzieller Stellensuchender oder inserierender Unternehmen auf eine andere Plattform zu nutzen</li>
-    </ul>
+</ul>
   </div>
 </section>
 
@@ -121,7 +122,7 @@ const TermsOfUse = () => {
         <li>vorsätzlicher oder fahrlässiger Verletzung des Lebens, des Körpers oder der Gesundheit</li>
         <li>aufgrund eines Garantieversprechens, soweit diesbezüglich nichts Anderes geregelt ist</li>
         <li>aufgrund zwingender Haftung</li>
-      </ul>
+</ul>
     </div>
     <div>
       <p class="font-semibold text-slate-800 mb-2">4.2 Begrenzte Haftung bei Fahrlässigkeit</p>
@@ -230,6 +231,9 @@ const TermsOfUse = () => {
           </div>
         </motion.div>
       </div>
+
+      {/* Footer */}
+      <Footer />
     </div>
   );
 };

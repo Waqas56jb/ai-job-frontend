@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import Navbar from './Navbar';
+import Footer from './Footer';
 
 const pageMotion = {
   initial: { opacity: 0, y: 16 },
@@ -45,7 +46,7 @@ const PrivacyPolicy = () => {
               <div className="prose prose-slate prose-lg max-w-none prose-headings:scroll-mt-24 prose-headings:text-slate-900 prose-headings:font-bold prose-h1:text-3xl prose-h1:mb-6 prose-h2:text-2xl prose-h2:mt-8 prose-h2:mb-4 prose-h2:text-sky-700 prose-h3:text-xl prose-h3:mt-6 prose-h3:mb-3 prose-h3:text-slate-800 prose-p:text-slate-700 prose-p:leading-relaxed prose-p:mb-4 prose-strong:text-slate-900 prose-strong:font-semibold prose-a:text-sky-600 prose-a:no-underline hover:prose-a:text-sky-700 prose-a:font-medium prose-ul:text-slate-700 prose-li:mb-2 prose-li:leading-relaxed">
                 <div
                   dangerouslySetInnerHTML={{
-                    __html: `
+        __html: `
 <h1 class="text-3xl font-bold text-slate-900 mb-6 pb-4 border-b-2 border-slate-200">Datenschutz</h1>
 
 <div class="bg-blue-50 border-l-4 border-blue-500 p-5 rounded-r-lg mb-8">
@@ -209,13 +210,13 @@ const PrivacyPolicy = () => {
     <h3 class="text-xl font-semibold text-slate-800 mb-3">Server-Log-Files</h3>
     <p class="text-slate-700 leading-relaxed mb-3">Der Provider der Seiten erhebt und speichert automatisch Informationen in so genannten Server-Log Files, die Ihr Browser automatisch an uns übermittelt. Dies sind:</p>
     <ul class="list-disc list-inside text-slate-700 space-y-2 ml-4 mb-3">
-      <li>Browsertyp und Browserversion</li>
-      <li>verwendetes Betriebssystem</li>
-      <li>Referrer URL</li>
-      <li>Hostname des zugreifenden Rechners</li>
-      <li>Uhrzeit der Serveranfrage</li>
-      <li>IP-Adresse</li>
-    </ul>
+<li>Browsertyp und Browserversion</li>
+<li>verwendetes Betriebssystem</li>
+<li>Referrer URL</li>
+<li>Hostname des zugreifenden Rechners</li>
+<li>Uhrzeit der Serveranfrage</li>
+<li>IP-Adresse</li>
+</ul>
     <p class="text-slate-700 leading-relaxed">Eine Zusammenführung dieser Daten mit anderen Datenquellen wird nicht vorgenommen. Wir behalten uns vor, diese Daten nachträglich zu prüfen, wenn uns konkrete Anhaltspunkte für eine rechtswidrige Nutzung bekannt werden. Die Erfassung dieser Daten erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO. Der Webseitenbetreiber hat ein berechtigtes Interesse an der technisch fehlerfreien und optimalen Darstellung seiner Webseite – hierzu müssen die Server-Log-Files erfasst werden.</p>
   </div>
 
@@ -437,7 +438,7 @@ const PrivacyPolicy = () => {
 
 <div class="bg-slate-100 rounded-lg p-6 border-2 border-slate-300 my-8">
   <h1 class="text-2xl font-bold text-slate-900 mb-4">Cookie Verarbeitung</h1>
-  <script id="CookieDeclaration" src="https://consent.cookiebot.com/71a48449-fe36-45dd-8872-b3491c3dd9da/cd.js" type="text/javascript" async></script>
+<script id="CookieDeclaration" src="https://consent.cookiebot.com/71a48449-fe36-45dd-8872-b3491c3dd9da/cd.js" type="text/javascript" async></script>
 </div>
                     `
                   }}
@@ -472,6 +473,9 @@ const PrivacyPolicy = () => {
           </div>
         </motion.div>
       </div>
+
+      {/* Footer */}
+      <Footer />
     </div>
   );
 };
