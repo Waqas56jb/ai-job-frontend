@@ -107,13 +107,6 @@ const Impressum = () => {
 </section>
 
 <section class="mb-8">
-  <h3 class="text-xl font-semibold text-slate-800 mt-6 mb-3">Arbeitnehmerüberlassung</h3>
-  <div class="bg-amber-50 border-l-4 border-amber-500 p-5 rounded-r-lg">
-    <p class="text-slate-700 leading-relaxed">Die Erlaubnis zur gewerbsmäßigen Arbeitnehmerüberlassung gem. § 1 Arbeitnehmerüberlassungsgesetzt wurde nach Beschluss der Bundesagentur für Arbeit, Regionaldirektion Bayern, befristet bis zum <strong>24.11.2024</strong> erteilt.</p>
-  </div>
-</section>
-
-<section class="mb-8">
   <h3 class="text-xl font-semibold text-slate-800 mt-6 mb-3">Aufsichtsbehörde</h3>
   <div class="bg-slate-50 rounded-lg p-5 border border-slate-200">
     <p class="text-slate-700 font-semibold mb-2">Agentur für Arbeit Regionaldirektion Bayern</p>

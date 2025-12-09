@@ -8,7 +8,7 @@ import mammoth from 'mammoth';
 import * as pdfjsLib from 'pdfjs-dist';
 
 // OpenAI API Key from environment
-const OPENAI_API_KEY = process.env.REACT_APP_OPENAI_API_KEY;
+const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 
 // PDF.js worker is now configured in src/pdfWorker.js
 // The worker is automatically configured when pdfWorker.js is imported in index.js

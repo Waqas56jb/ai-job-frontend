@@ -49,7 +49,8 @@ const Footer = () => {
             <ul className="space-y-2 text-sm text-gray-600">
               <li>support@jobspeedy.ai</li>
               <li>+49 821 / 486 99 516</li>
-              <li>Alfred-Nobel-Str. 9, 86156 Augsburg</li>
+              <li>Alfred-Nobel-Str. 9</li>
+              <li>86156 Augsburg</li>
             </ul>
           </div>
         </div>

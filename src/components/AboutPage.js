@@ -33,7 +33,7 @@ const AboutPage = () => {
       intro: "JOBspeedy AI ist eine innovative Recruiting-Plattform, die Künstliche Intelligenz, Automatisierung und menschliche Erfahrung kombiniert, um Bewerber und Unternehmen schneller und passgenauer zusammenzubringen. Unser Fokus liegt darauf, den gesamten Bewerbungs- und Einstellungsprozess einfacher, transparenter und effizienter zu gestalten.",
       forCompaniesTitle: "Für Unternehmen bedeutet das:",
       forCompanies: "Stellenausschreibungen lassen sich in Sekunden mit KI erstellen, Lebensläufe werden automatisch analysiert und passende Talente werden intelligent vorgeschlagen. Alle Prozesse laufen zentral über ein übersichtliches Dashboard – für weniger Aufwand und bessere Entscheidungen.",
-      forCandidatesTitle: "Für Bewerber bietet JOBspeedy AI ein modernes und unkompliziertes Erlebnis:",
+      forCandidatesTitle: "Für Bewerber bedeutet das:",
       forCandidates: "Ein Profil reicht aus, um automatisch passende Jobvorschläge zu erhalten, sich in wenigen Klicks zu bewerben und jederzeit den eigenen Fortschritt zu verfolgen. Die Plattform unterstützt dabei, Chancen schneller zu erkennen und Jobs zu finden, die wirklich zur eigenen Persönlichkeit und Erfahrung passen.",
       missionTitle: "Unsere Mission ist klar:",
       mission: "Recruiting neu denken – fairer, schneller und menschlicher.",
@@ -46,7 +46,7 @@ const AboutPage = () => {
       intro: "JOBspeedy AI is an innovative recruiting platform that combines artificial intelligence, automation, and human experience to bring applicants and companies together faster and more precisely. Our focus is on making the entire application and hiring process simpler, more transparent, and more efficient.",
       forCompaniesTitle: "For companies, this means:",
       forCompanies: "Job postings can be created in seconds with AI, resumes are automatically analyzed, and suitable talents are intelligently suggested. All processes run centrally through a clear dashboard – for less effort and better decisions.",
-      forCandidatesTitle: "For applicants, JOBspeedy AI offers a modern and uncomplicated experience:",
+      forCandidatesTitle: "For candidates, this means:",
       forCandidates: "One profile is enough to automatically receive matching job suggestions, apply in just a few clicks, and track your own progress at any time. The platform helps you recognize opportunities faster and find jobs that truly match your personality and experience.",
       missionTitle: "Our mission is clear:",
       mission: "Rethink recruiting – fairer, faster, and more human.",
@@ -73,7 +73,10 @@ const AboutPage = () => {
             <p className="inline-flex items-center gap-2 text-sm font-semibold text-sky-700 bg-sky-50 border border-sky-100 px-3 py-1 rounded-full mb-4">
               🚀 About Us
             </p>
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-slate-900 mt-3 bg-gradient-to-r from-sky-600 via-blue-600 to-indigo-600 bg-clip-text text-transparent">
+            <h1
+              className="text-3xl md:text-4xl lg:text-5xl font-extrabold mt-3 text-[#1557d5] tracking-tight leading-tight antialiased drop-shadow-sm"
+              style={{ textShadow: "0 1px 0 rgba(0,0,0,0.08)" }}
+            >
               {text.title}
             </h1>
           </div>
