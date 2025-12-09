@@ -6,9 +6,7 @@ import mammoth from 'mammoth';
 
 // Import pdfjs-dist for PDF parsing
 import * as pdfjsLib from 'pdfjs-dist';
-
-// OpenAI API Key from environment
-const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
+import API_BASE_URL from '../config';
 
 // PDF.js worker is now configured in src/pdfWorker.js
 // The worker is automatically configured when pdfWorker.js is imported in index.js
@@ -127,7 +125,7 @@ export async function parseResumeWithOpenAI(file, name, email, phone) {
 
     console.log(`Successfully extracted ${text.length} characters from ${fileExtension.toUpperCase()} file`);
 
-    // Parse with OpenAI
+    // Parse with backend (server-side OpenAI)
     const parsed = await callOpenAIForParsing(text, file.name);
     return parsed;
   } catch (error) {
@@ -322,61 +320,15 @@ async function callOpenAIForParsing(text, filename) {
     console.log(`Sending ${text.length} characters to OpenAI for parsing`);
     console.log(`Text preview (first 500 chars):`, text.substring(0, 500));
     
-    // Call OpenAI to parse the extracted text with improved prompt
-    const response = await fetch("https://api.openai.com/v1/chat/completions", {
+    // Call backend endpoint (server holds OPENAI_API_KEY)
+    const response = await fetch(`${API_BASE_URL}/api/parse-resume`, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${OPENAI_API_KEY}`
+        "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        model: "gpt-4o-mini",
-        messages: [
-          {
-            role: "system",
-            content: `You are a precise resume parser. Extract ONLY information that appears EXACTLY in the provided resume text.
-
-STRICT RULES - VIOLATION RESULTS IN INVALID RESPONSE:
-- ONLY extract skills that appear VERBATIM in the resume text
-- DO NOT add, assume, or infer any skills not explicitly written in the text
-- DO NOT use common programming skills lists or assumptions
-- If no skills are explicitly mentioned in the text, return an empty skills array []
-- Extract work experience ONLY if job titles, companies, and descriptions are clearly stated
-- Extract education ONLY if degrees/institutions are explicitly mentioned
-- DO NOT hallucinate, assume, or add any information not present in the text
-
-Return ONLY valid JSON with this exact structure:
-{
-  "skills": ["skill1", "skill2", "skill3"],
-  "experience": [
-    {
-      "role": "Job Title",
-      "company": "Company Name",
-      "years": 5,
-      "description": "Key responsibilities or achievements"
-    }
-  ],
-  "education": "Degree and Institution details"
-}
-
-Extract word-for-word from the resume text only. No additions or assumptions.`
-          },
-          {
-            role: "user",
-            content: `Parse this resume text and extract ONLY information that is explicitly mentioned:
-
-${text.substring(0, 8000)}
-
-Extract:
-1. Skills EXPLICITLY mentioned in the text (programming languages, frameworks, tools, technologies)
-2. Work experience entries that are clearly described
-3. Education details if mentioned
-
-Return JSON with only the information found in the text above. Do not add anything that isn't in the resume.`
-          }
-        ],
-        temperature: 0.1,
-        response_format: { type: "json_object" }
+        text: text.substring(0, 8000),
+        filename: filename || "resume.txt"
       })
     });
     
@@ -385,26 +337,10 @@ Return JSON with only the information found in the text above. Do not add anythi
       throw new Error(error.error?.message || `OpenAI API error: ${response.status}`);
     }
     
-    const data = await response.json();
-    const content = data.choices[0].message.content;
-    
-    // Parse the JSON response
-    let parsed;
-    try {
-      parsed = JSON.parse(content);
-    } catch (e) {
-      // Try to extract JSON from the response
-      const jsonMatch = content.match(/\{[\s\S]*\}/);
-      if (jsonMatch) {
-        parsed = JSON.parse(jsonMatch[0]);
-      } else {
-        throw new Error("Could not parse OpenAI response: " + content.substring(0, 100));
-      }
-    }
+    const parsed = await response.json();
     
     // Validate and log parsed data
-    console.log("OpenAI response:", content);
-    console.log("Parsed data:", parsed);
+    console.log("Backend parse response:", parsed);
     
     // Validate parsed data
     if (!parsed.skills) parsed.skills = [];
@@ -449,17 +385,11 @@ Return JSON with only the information found in the text above. Do not add anythi
       // Don't add dummy skills - if OpenAI couldn't find skills, leave empty
     }
     
-    // Classify the role using both skills and resume content
-    // Only classify if we have actual skills from the resume
-    const classification = (parsed.skills && parsed.skills.length > 0)
-      ? await classifyRole(parsed.skills, text)
-      : { stack: "Unknown", percentage: 0, role: "Unknown Role", reasoning: "No skills found in resume" };
-
     return {
       skills: Array.isArray(parsed.skills) ? parsed.skills : [],
       experience: Array.isArray(parsed.experience) ? parsed.experience : [],
       education: parsed.education || "",
-      classification: classification
+      classification: parsed.classification || { stack: "Unknown", percentage: 0, role: "Unknown Role", reasoning: "Not classified" }
     };
   } catch (error) {
     console.error("OpenAI parsing error:", error);
